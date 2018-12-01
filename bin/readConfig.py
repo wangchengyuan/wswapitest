@@ -2,12 +2,11 @@
 @author:wangchengyuan
 @file:readConfig.py
 @time:2018/11/21下午7:40
-@desc:
+@desc:增加读取配置文件类和方法
 '''
 
 import os
 import configparser
-import codecs
 
 #定义获取配置文件的路径
 proDir = os.path.dirname(os.path.dirname(__file__))
