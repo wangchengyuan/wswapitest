@@ -19,10 +19,26 @@ class ReadConfig():
         self.cf.read(configDir)
 
     # 增加获取对应配置的方法，获取 DATABASE、SSHRELATE，如有新配置，新增方法即可
+    # 配置文件中DATABASE相关配置的获取和修改
     def get_database(self, name):
         value = self.cf.get('DATABASE', name)
         return value
 
+    def set_database(self,name,value):
+        self.cf.set('DATABASE',name,value)
+        print('test')
+        with open(configDir,'w+') as f:
+            self.cf.write(f)
+
+    # 配置文件中SSHRELATE相关配置的获取和修改
     def get_sshrelate(self, name):
         value = self.cf.get('SSHRELATE', name)
         return value
+
+    def set_sshrelate(self,name,value):
+        self.cf.set('SSHRELATE',name,value)
+        with open(configDir,'w+') as f:
+            self.cf.write(f)
+
+
+
