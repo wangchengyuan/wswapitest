@@ -12,7 +12,6 @@ import os
 from bin import readConfig
 
 
-
 class Log:
     def __init__(self):
         global logPath, resultPath, proDir
@@ -39,11 +38,10 @@ class Log:
         self.fh.setFormatter(formatter)
         self.sh.setFormatter(formatter)
 
-
-    def trace(self,message):
+    def trace(self, message):
         self.logger.addHandler(self.fh)
         self.logger.info(message)
 
-    def step(self,message):
+    def step(self, message):
         self.logger.addHandler(self.sh)
         self.logger.info(message)
