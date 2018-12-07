@@ -45,3 +45,21 @@ class Log:
     def step(self, message):
         self.logger.addHandler(self.sh)
         self.logger.info(message)
+
+
+class MyLog:
+    log = None
+    mutex = threading.Lock()
+
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def get_log():
+
+        if MyLog.log is None:
+            MyLog.mutex.acquire()
+            MyLog.log = Log()
+            MyLog.mutex.release()
+
+        return MyLog.log
