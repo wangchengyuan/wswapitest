@@ -40,5 +40,15 @@ class ReadConfig():
         with open(configDir,'w+') as f:
             self.cf.write(f)
 
+    # 配置文件中URL相关配置的获取和修改
+    def get_urlrelate(self,name):
+        value=self.cf.get('URL',name)
+        return value
+
+    def set_urlrelate(self,name,value):
+        self.cf.set('URL',name,value)
+        with open(configDir,'w') as f:
+            self.cf.write(f)
+
 
 
