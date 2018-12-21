@@ -15,14 +15,16 @@ localReadConfig = readConfig.ReadConfig()
 class HttpConfig():
     def __init__(self):
         global host, port, timeout
+        host=localReadConfig.get_urlrelate('host')
+        timeout= localReadConfig.get_urlrelate('timeout')
         self.log = Log.get_log()
         self.headers = {}
         self.params = {}
         self.data = {}
-        self.url = None
+        self.url = ''
 
-    def set_url(self, url):
-        self.url = host + url
+    def set_url(self):
+        self.url = host + self.url
 
     def set_header(self, headers):
         self.headers = headers
@@ -37,6 +39,7 @@ class HttpConfig():
         self.file=file
 
     def get(self):
+        self.set_url()
         try:
             response = requests.get(self.url, params=self.params, headers=self.headers, timeout=float(timeout))
             return response
@@ -45,9 +48,12 @@ class HttpConfig():
             return None
 
     def post(self):
+        self.set_url()
         try:
             response = requests.post(self.url,headers=self.headers,data=self.data,files=self.file,timeout=float(timeout))
             return response
         except TimeoutError:
             self.log.trace("time out")
             return None
+
+
